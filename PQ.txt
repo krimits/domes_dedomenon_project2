@@ -1,0 +1,50 @@
+public class PQ<T> {
+    // ... existing code ...
+
+    private int[] indices; // new array to keep track of indices
+
+    public PQ(Comparator<T> comparator){
+        // ... existing code ...
+        this.indices = new int[DEFAULT_CAPACITY + 1];
+    }
+
+    public void insert(T item){
+        // ... existing code ...
+        indices[((City)item).getID()] = size; // update index
+    }
+
+    private void swim(int i){
+        // ... existing code ...
+        swapIndices(i, parent); // swap indices
+    }
+
+    private void sink(int i){
+        // ... existing code ...
+        swapIndices(i, j); // swap indices
+    }
+
+    public T remove(int id){
+        if(isEmpty()){
+            return null;
+        }
+        int i = indices[id]; // get index in O(1) time
+        swim(i);
+        T root = heap[1];
+        heap[1] = heap[size];
+        sink(1);
+        return root;
+    }
+
+    private void swap(int i, int j) {
+        // ... existing code ...
+        swapIndices(i, j); // swap indices
+    }
+
+    private void swapIndices(int i, int j) {
+        int tmp = indices[((City)heap[i]).getID()];
+        indices[((City)heap[i]).getID()] = indices[((City)heap[j]).getID()];
+        indices[((City)heap[j]).getID()] = tmp;
+    }
+
+    // ... existing code ...
+}
